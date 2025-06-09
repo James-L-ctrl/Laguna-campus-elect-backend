@@ -1,0 +1,15 @@
+model Student {
+  studentid  String @id @default(cuid())
+  email      String
+  name       String
+  department String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  candidateId String?
+  candidate   Candidate? @relation("CandidateToStudent", fields: [candidateId], references: [candidateid])
+  votes      vote[]
+
+  @@index([studentid])
+}

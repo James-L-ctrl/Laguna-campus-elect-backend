@@ -1,0 +1,20 @@
+model Candidate {
+  candidateid String   @id @default(cuid())
+  name       String
+  positionId String
+  position   Position @relation(fields: [positionId], references: [id])
+  
+  // Relations
+  votes     vote[]
+  students  Student[] @relation("CandidateToStudent")
+  
+  @@index([candidateid])
+}
+
+model Position {
+  id         String     @id @default(cuid())
+  name       String
+  candidates Candidate[]
+  
+  @@index([id])
+}
