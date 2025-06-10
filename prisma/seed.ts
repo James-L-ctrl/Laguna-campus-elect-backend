@@ -16,20 +16,6 @@ description: 'University Student Council Elections 2025',
 isActive: true
 }
 });
-
-await prisma.position.upsert({
-    where: { id: PRESIDENT25_ID },
-    update: {},
-    create: {
-      id: PRESIDENT25_ID,
-      title: "President",
-      Election: {
-        connect: {
-          id: election25.id,
-        },
-      },
-    },
-  });
 }
 
 async function main() {
