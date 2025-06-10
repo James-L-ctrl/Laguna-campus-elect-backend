@@ -9,7 +9,7 @@ model Student {
 
   candidateId String?
   candidate   Candidate? @relation("CandidateToStudent", fields: [candidateId], references: [candidateid])
-  votes      vote[]
+  votes      Vote[]
 
   @@index([studentid])
 }
