@@ -3,7 +3,7 @@ import { start } from 'repl';
 const prisma = new PrismaClient();
 
 async function seedflection() {
-    const election = await prisma.election.create({
+    const election = await prisma.election.upsert({
         where: {
             id: 'election-2025'
         },
