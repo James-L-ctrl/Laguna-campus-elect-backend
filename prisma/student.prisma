@@ -1,15 +1,13 @@
 model Student {
-  studentid  String @id @default(cuid())
-  email      String
-  name       String
-  department String
+    studentId String @id @unique
+    email String
+    name String
+    department String
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    Candidate Candidate []
+    Vote Vote[]
 
-  candidateId String?
-  candidate   Candidate? @relation("CandidateToStudent", fields: [candidateId], references: [candidateid])
-  votes      Vote[]
+    createdAt DateTime @default(now())
 
-  @@index([studentid])
+    @@index([studentId])
 }

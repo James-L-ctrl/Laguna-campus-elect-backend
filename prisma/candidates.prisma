@@ -1,21 +1,19 @@
-model Candidate {
-  candidateid String   @id @default(cuid())
-  name       String
-  positionId String
-  position   Position @relation(fields: [positionId], references: [id])
-  
-  // Relations
-  votes     Vote[]    @relation("CandidateToVote")
-  students  Student[] @relation("CandidateToStudent")
-  
-  @@index([candidateid])
+model Position {
+    id String @id @default(uuid())
+    title String
+
+    Candidate Candidate []
+    Vote Vote[]
+    Election Election @relation(fields:[electionId], references: [id])
+    electionId String
 }
 
-model Position {
-  id         String     @id @default(cuid())
-  name       String
-  candidates Candidate[]
-  votes      Vote[]
-  
-  @@index([id])
+model Candidate{
+    candidateId String @id @default(uuid())
+
+    Position Position @relation(fields: [positionId], references: [id])
+    positionId String
+
+    Student Student @relation(fields: [studentId], references: [studentId])
+    studentId String
 }
